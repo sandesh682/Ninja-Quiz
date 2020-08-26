@@ -21,10 +21,14 @@ const updateUI = async (data) => {
         imgsrc = 'img/night.svg';
     }
 
+    let iconsrc=`img/icons/${data.weather.WeatherIcon}.svg`;
+
+
     card.innerHTML = 
     `<img src=${imgsrc} alt="" class="card-img-top">
     <div class="card-body">
-        <h3 class="card-title">${data.city_data.EnglishName}</h3>
+    <img src=${iconsrc} alt="" class="icon p-1 bg-light rounded-circle">
+        <h3 class="card-title mt-2">${data.city_data.EnglishName}</h3>
         <h4 class="card-subtitle">${data.weather.WeatherText}</h4>
         <h1>${data.weather.Temperature.Metric.Value} <span>&deg;C</span></h1>
     </div>    
@@ -39,7 +43,6 @@ form.addEventListener('submit', (event)=>{
 
     updateCity(city)
         .then(data => {
-            console.log(data);
             updateUI(data);
         })
         .catch(error => console.log(error));    
